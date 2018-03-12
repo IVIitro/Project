@@ -61,10 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
-        super.onStart();
-    }
-
-    private void loadData(){
         Query query = fNotesDatabase.orderByValue();
         FirebaseRecyclerAdapter<NoteModel, NoteViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<NoteModel, NoteViewHolder>(
                 NoteModel.class,
@@ -109,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mNotesList.setAdapter(firebaseRecyclerAdapter);
+        super.onStart();
+    }
+
+    private void loadData(){
+
     }
 
     private void updateUI(){
