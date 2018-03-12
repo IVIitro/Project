@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+    <string name="res_lab">Реєстрація</string>
+    <string name="log_lab">Авторизація</string>
+</resources>
