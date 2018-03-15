@@ -26,8 +26,12 @@
         <activity
             android:name=".user_sign.LoginActivity"
             android:label="@string/log_lab" />
-        <activity android:name=".NewNoteActivity"
-            android:label="Новий запис"></activity>
+        <activity
+            android:name=".NewNoteActivity"
+            android:label="Новий запис" />
+        <activity android:name=".NewImageNoteActivity" />
+        <activity android:name=".ImageNoteViewActivity"></activity>
+        <activity android:name=".NoteViewActivity"></activity>
     </application>
 
 </manifest>

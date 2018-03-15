@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mitro.notesapp.NewImageNoteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4pd"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/new_note_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Заголовок"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_choose_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="0.5"
+                android:background="?attr/colorControlHighlight"
+                android:text="Вибрати зображення"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image_view"
+            style="@android:style/Widget.ImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:gravity="top"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_upload"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="3dp" />
+
+        <Button
+            android:id="@+id/new_note_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorControlHighlight"
+            android:text="Підтвердити"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

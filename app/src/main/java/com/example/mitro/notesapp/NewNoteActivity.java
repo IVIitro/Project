@@ -49,24 +49,12 @@ public class NewNoteActivity extends AppCompatActivity {
 
         try {
             noteID = getIntent().getStringExtra("noteId");
-
-            //Toast.makeText(this, noteID, Toast.LENGTH_SHORT).show();
-
             if (!noteID.trim().equals("")) {
                 isExist = true;
             } else {
                 //mainMenu.findItem(1).setVisible(false);
                 isExist = false;
             }
-
-            /*if (noteID.equals("no")){
-                mainMenu.findItem(0).setVisible(false);
-                isExist = false;
-            }else{
-                isExist=true;
-            }*/
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,10 +123,13 @@ public class NewNoteActivity extends AppCompatActivity {
                 updateMap.put("title", etTitle.getText().toString().trim());
                 updateMap.put("content", etContent.getText().toString().trim());
                 updateMap.put("timestamp", ServerValue.TIMESTAMP);
+                updateMap.put("type", "1");
+                updateMap.put("imageUrl", "null");
 
                 fNotesDatabase.child(noteID).updateChildren(updateMap);
 
                 Toast.makeText(this, "Запис змінено!", Toast.LENGTH_SHORT).show();
+                finish();
             } else {
                 // новий
 
@@ -148,6 +139,8 @@ public class NewNoteActivity extends AppCompatActivity {
                 noteMap.put("title", title);
                 noteMap.put("content", content);
                 noteMap.put("timestamp", ServerValue.TIMESTAMP);
+                noteMap.put("type", "1");
+                noteMap.put("imageUrl", "null");
 
                 Thread mainThread = new Thread(new Runnable() {
                     @Override
@@ -166,6 +159,7 @@ public class NewNoteActivity extends AppCompatActivity {
                     }
                 });
                 mainThread.start();
+                finish();
             }
 
 
@@ -183,7 +177,12 @@ public class NewNoteActivity extends AppCompatActivity {
 
         if(!isExist){
             MenuItem delBtn = menu.getItem(0);
+            MenuItem edBtn = menu.getItem(1);
             delBtn.setVisible(false);
+            edBtn.setVisible(false);
+        }else{
+            MenuItem edBtn = menu.getItem(1);
+            edBtn.setVisible(false);
         }
 
         mainMenu=menu;
@@ -202,9 +201,7 @@ public class NewNoteActivity extends AppCompatActivity {
                 if (isExist) {
                     deleteNote();
                 } else {
-
-
-                    Toast.makeText(this, "Nothing to delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Пусто", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -219,7 +216,7 @@ public class NewNoteActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(NewNoteActivity.this, "Запис Видалено!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewNoteActivity.this, "Запис Видалено", Toast.LENGTH_SHORT).show();
                     noteID = "no";
                     finish();
                 } else {

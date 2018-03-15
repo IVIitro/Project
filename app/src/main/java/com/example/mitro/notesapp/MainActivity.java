@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mNotesList;
     private GridLayoutManager gridLayoutManager;
 
+
     private DatabaseReference fNotesDatabase;
 
     @Override
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
-        Query query = fNotesDatabase.orderByValue();
+        Query query = fNotesDatabase.orderByKey();
         FirebaseRecyclerAdapter<NoteModel, NoteViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<NoteModel, NoteViewHolder>(
                 NoteModel.class,
                 R.layout.single_note_layout,
@@ -75,24 +76,42 @@ public class MainActivity extends AppCompatActivity {
                 fNotesDatabase.child(noteId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild("title") && dataSnapshot.hasChild("timestamp")) {
+                        if (dataSnapshot.hasChild("title") && dataSnapshot.hasChild("timestamp") && dataSnapshot.hasChild("type")) {
                             String title = dataSnapshot.child("title").getValue().toString();
                             String timestamp = dataSnapshot.child("timestamp").getValue().toString();
-
+                            String type = dataSnapshot.child("type").getValue().toString();
                             viewHolder.setNoteTitle(title);
                             //viewHolder.setNoteTime(timestamp);
 
                             GetTime getTime = new GetTime();
                             viewHolder.setNoteTime(getTime.getTime(Long.parseLong(timestamp), getApplicationContext()));
 
-                            viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(MainActivity.this, NewNoteActivity.class);
-                                    intent.putExtra("noteId", noteId);
-                                    startActivity(intent);
-                                }
-                            });
+                            switch (type) {
+                                case "1":
+                                    viewHolder.setNoteType("текст");
+                                    viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        //перевірка типу запису
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(MainActivity.this, NoteViewActivity.class);
+                                            intent.putExtra("noteId", noteId);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    break;
+                                case "2":
+                                    viewHolder.setNoteType("зображення");
+                                    viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        //перевірка типу запису
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(MainActivity.this, ImageNoteViewActivity.class);
+                                            intent.putExtra("noteId", noteId);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    break;
+                            }
                         }
                     }
 
@@ -142,6 +161,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_new_note_btn:
                 Intent newIntent = new Intent(MainActivity.this, NewNoteActivity.class);
                 startActivity(newIntent);
+                break;
+            case R.id.main_new_image_note_btn:
+                Intent newIntent1 = new Intent(MainActivity.this, NewImageNoteActivity.class);
+                startActivity(newIntent1);
                 break;
         }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mitro.notesapp.NewNoteActivity">
+    tools:context="com.example.mitro.notesapp.ImageNoteViewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,13 +14,15 @@
         android:orientation="vertical">
 
 
-        <EditText
+        <TextView
             android:id="@+id/new_note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:hint="Заголовок"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp" />
+
 
         <View
             android:layout_width="match_parent"
@@ -32,26 +34,19 @@
             android:alpha=".3"
             android:background="@android:color/black" />
 
-        <EditText
-            android:id="@+id/new_note_content"
+        <ImageView
+            android:id="@+id/image_view"
+            style="@android:style/Widget.ImageButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:ems="10"
+            android:background="@color/cardview_light_background"
             android:gravity="top"
-            android:hint="Текст"
-            android:inputType="textMultiLine"
-            android:padding="10dp" />
+            app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
 
-        <Button
-            android:id="@+id/new_note_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorControlHighlight"
-            android:text="Підтвердити"
-            android:textColor="@android:color/black" />
 
     </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -4,7 +4,10 @@
 
     <item android:id="@+id/main_new_note_btn"
         android:title="Новий запис"
-        android:icon="@drawable/ic_add_white_24dp"
+        android:icon="@drawable/ic_text_fields_black_24dp"
         app:showAsAction="always"/>
-
+    <item android:id="@+id/main_new_image_note_btn"
+        android:title="Новий запис"
+        android:icon="@drawable/ic_insert_photo_black_24dp"
+        app:showAsAction="always"/>
 </menu>
