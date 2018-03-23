@@ -28,12 +28,11 @@
             <TextView
                 android:id="@+id/note_title"
                 android:layout_width="156dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="5"
-                android:minHeight="50dp"
                 android:text="Заголовок"
                 android:textColor="@android:color/black" />
 
@@ -41,7 +40,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+
                 app:srcCompat="@drawable/common_full_open_on_phone" />
 
             <TextView
