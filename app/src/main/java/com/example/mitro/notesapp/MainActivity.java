@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                             String title = dataSnapshot.child("title").getValue().toString();
                             String timestamp = dataSnapshot.child("timestamp").getValue().toString();
                             String type = dataSnapshot.child("type").getValue().toString();
+                            String url = dataSnapshot.child("imageUrl").getValue().toString();
                             viewHolder.setNoteTitle(title);
                             //viewHolder.setNoteTime(timestamp);
 
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                             switch (type) {
                                 case "1":
-                                    viewHolder.setNoteType("текст");
+                                    viewHolder.setNoteType(url);
                                     viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         //перевірка типу запису
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                     });
                                     break;
                                 case "2":
-                                    viewHolder.setNoteType("зображення");
+                                    viewHolder.setNoteType(url);
                                     viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         //перевірка типу запису
@@ -167,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(newIntent1);
                 break;
         }
-
         return true;
     }
 
